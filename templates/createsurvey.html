@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <title>Survey |SecourHealth</title>
+    {% include 'includes/_header.html' %}
+    <link href="../../static/multiselect/css/multi-select.css" rel="stylesheet">
+</head>
+
+<body class="theme-red">
+    {% include 'includes/_loader.html' %} {% include 'includes/_navbar.html' %} {% include 'includes/_menu.html' %}
+    <section class="content">
+        <div class="container-fluid">
+            <div class="block-header">
+                <h2>Create Survey</h2>
+            </div>
+
+            <!-- Textarea -->
+            <div class="row clearfix">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="card">
+                        <div class="header">
+                            <h2>Survey</h2>
+                        </div>
+                        <div class="body">
+                        <form method="POST">
+                                <div class="row clearfix">
+                                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                                <label>Agent Id</label>
+                                            <div class="form-group">
+                                                <div class="form-line">
+                                                    <input type="text" name="agentid" class="form-control" placeholder="Enter Agent ID.......">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                                <label>Location Id</label>
+                                            <div class="form-group">
+                                                <div class="form-line">
+                                                   <input type="text" name="locid" class="form-control" placeholder="Enter Location ID.......">
+                                                </div>
+                                            </div>
+                                        </div>
+                                </div>
+                                    <label>Question</label>
+                                    <select id='callbacks' name="quesid" multiple>
+                                            {% for data in quesdata %}
+                                                <option value='{{data.ques_id}}'>{{data.question}}</option>
+                                            {% endfor %}
+                                    </select>
+                                        
+                                    <div class="row clearfix">
+                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                                    <label>Start Date</label>
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <input type="text" name="startdate" class="form-control" placeholder="Example: 28/04/2018">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                                    <label>End Date</label>
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                       <input type="text" name="enddate" class="form-control" placeholder="Example: 30/04/2018">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                    </div>
+                            <button type="submit" class="btn btn-primary m-t-15 waves-effect">SUBMIT</button>
+                            <button type="reset" class="btn btn-primary m-t-15 waves-effect">CLEAR</button>
+                           </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- #END# Textarea -->
+        </div>
+    </section>
+
+    {% include 'includes/_footer.html' %}
+    <!-- <script src="../../static/multiselect/js/jquery3.min.js"></script> -->
+    <script src="../../static/multiselect/js/jquery.multi-select.js"></script>
+    <script type="text/javascript">
+        // run callbacks
+            $('#callbacks').multiSelect({
+            afterSelect: function(values){
+            },
+            afterDeselect: function(values){
+              alert("Deselected Question: "+values);
+            }
+          });
+    </script>
+
+</body>
+
+</html>

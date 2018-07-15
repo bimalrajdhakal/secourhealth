@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <title>Agent|SecourHealth</title>
+    <link rel="icon" href="../../favicon.ico" type="image/x-icon">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
+
+    <!-- Bootstrap Core Css -->
+    <link href="../static/plugins/bootstrap/css/bootstrap.css" rel="stylesheet">
+
+    <!-- Waves Effect Css -->
+    <link href="../static/plugins/node-waves/waves.css" rel="stylesheet" />
+
+    <!-- Animation Css -->
+    <link href="../static/plugins/animate-css/animate.css" rel="stylesheet" />
+    <!-- Custom Css -->
+    <link href="../static/css/style.css" rel="stylesheet">
+
+    <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
+    <link href="../static/css/themes/all-themes.css" rel="stylesheet" />
+</head>
+
+<body class="theme-red">
+    {% include 'includes/_loader.html' %} {% include 'includes/_navbar.html' %} {% include 'includes/_menu.html' %}
+    <section class="content">
+        <div class="container-fluid">
+            <div class="block-header">
+                <h2>
+                    <strong>Location Information</strong>
+                </h2>
+            </div>
+            {% block body %}
+                        <!-- Hover Rows -->
+                        <div class="row clearfix">
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    <div class="card">
+                                        <div class="header">
+                                            <h2>
+                                                <center>Registered Location Details</center>
+                                                <a href="/location" class="btn btn-default waves-effect">
+                                                    <i class="material-icons">arrow_back</i>BACK</a>
+                                                     
+                                            <a href="delete_location/{{form.data.loc_id}}">
+                                                <button type="button" class="btn btn-danger waves-effect">
+                                                    <i class="material-icons">delete</i>
+                                                    <span>DELETE</span>
+                                                </button>
+                                            </a>
+                                            </h2>
+                                        </div>
+                                            {% macro render_field(field) %}
+                                                {{ field(**kwargs)|safe }}
+                                            {%endmacro%}
+                                        <div class="body">
+                                            <table class="table table-hover">
+                                                <tbody>
+                                                    <tr>
+                                                        <td>Location Id</td>
+                                                        <td>{{render_field(form.loc_id, class_="form-control") }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>House No/Bulding/Apartment</td>
+                                                        <td>{{render_field(form.hno, class_="form-control") }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Street</td>
+                                                        <td>{{render_field(form.street, class_="form-control") }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Landmark</td>
+                                                        <td>{{render_field(form.landmark, class_="form-control") }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Area/Locality/Sector</td>
+                                                        <td>{{render_field(form.area, class_="form-control") }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>PIN Code</td>
+                                                        <td>{{render_field(form.pincode, class_="form-control") }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Latitude</td>
+                                                        <td>{{render_field(form.lat, class_="form-control") }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Langitude</td>
+                                                        <td>{{render_field(form.lng, class_="form-control") }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Running Address</td>
+                                                        <td>{{render_field(form.runnadd, class_="form-control") }}</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- #END# Hover Rows -->
+            {% endblock %}
+        </div>
+        <!-- container fluid ends here -->
+    </section>
+    <!-- section ends here -->
+
+
+    <!-- Jquery Core Js -->
+    <script src="../static/plugins/jquery/jquery.min.js"></script>
+
+    <!-- Bootstrap Core Js -->
+    <script src="../static/plugins/bootstrap/js/bootstrap.js"></script>
+
+    <!-- Select Plugin Js -->
+    <script src="../static/plugins/bootstrap-select/js/bootstrap-select.js"></script>
+
+    <!-- Slimscroll Plugin Js -->
+    <script src="../static/plugins/jquery-slimscroll/jquery.slimscroll.js"></script>
+
+    <!-- Waves Effect Plugin Js -->
+    <script src="../static/plugins/node-waves/waves.js"></script>
+    <!-- Custom Js -->
+    <script src="../static/js/admin.js"></script>
+
+    <!-- Demo Js -->
+    <script src="../static/js/demo.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <title>Dashboard |Location</title>
+    {% include 'includes/_header.html' %}
+</head>
+
+<body class="theme-red">
+    {% include 'includes/_loader.html' %} {% include 'includes/_navbar.html' %} {% include 'includes/_menu.html' %}
+    <section class="content">
+        <div class="container-fluid">
+            <div class="block-header">
+                <h2>Location Registeration</h2>
+            </div>
+            <div class="row clearfix">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="card">
+                        <div class="body">
+                            <div class="row clearfix">
+                                <div class="col-lg-6 col-md-3 col-sm-3 col-xs-6">
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                            <input type="text" id="address" class="form-control" placeholder="Enter nearby area or place name">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                    <button type="button" class="btn btn-primary btn-lg m-l-15 waves-effect" onclick="codeAddress()">SEARCH</button>
+                                    <a href="/location" class="btn btn-primary btn-lg m-l-15 waves-effect">MANAGE REGISTERED LOCATIONS</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- #END# Inline Layout -->
+            <div class="alert alert-warning">
+                Adjust Marker to get your current location and Click Next
+                <button type="button" class="btn btn-default waves-effect pull-right" data-toggle="modal" data-target="#defaultModal">NEXT</button>
+            </div>
+            <!-- Basic Example -->
+            <div class="row clearfix">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="card">
+                        <div class="body">
+                            <div id="map" class="gmap"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- #END# Basic Example -->
+            <!-- Register Location Modal -->
+            <div class="modal fade" id="defaultModal" tabindex="-1" role="dialog">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title align-center" id="defaultModalLabel">Location Registration</h4>
+                        </div>
+                        <form id="locationreg" method="POST">
+                            <div class="modal-body">
+                                <div class="body">
+                                    <label>House No/Bulding/Apartment</label>
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                            <input type="text" name="hnobldg" class="form-control">
+                                        </div>
+                                    </div>
+                                    <label>Street/Road/Lane</label>
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                            <input type="text" name="street" class="form-control">
+                                        </div>
+                                    </div>
+                                    <label>Landmark</label>
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                            <input type="text" name="landmark" class="form-control">
+                                        </div>
+                                    </div>
+                                    <label>Area/Locality/Sector</label>
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                            <input type="text" name="area" class="form-control">
+                                        </div>
+                                    </div>
+                                    <label>PIN Code</label>
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                            <input type="text" name="pincode" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="form-group hide">
+                                            <input type="text" name="lat" id="lat" class="form-control">
+                                    </div>
+                                    <div class="form-group hide">
+                                            <input type="text" name="lng" id="lng" class="form-control">
+                                    </div>
+                                    <div class="form-group hide">
+                                            <input type="text" name="runningadd" id="runningadd" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-link waves-effect">SAVE</button>
+                                <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CLOSE</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!-- Register Location Modal -->
+        </div>
+    </section>
+    <!-- google customization JavaScript code Start from here -->
+    <script src="https://maps.googleapis.com/maps/api/js"></script>
+
+    <script>
+
+        var geocoder;
+        var map;
+        var marker;
+        var infowindow = new google.maps.InfoWindow({
+            size: new google.maps.Size(150, 50)
+        });
+
+        function initialize() {
+            geocoder = new google.maps.Geocoder();
+            var latlng = new google.maps.LatLng(20.5937, 78.9629);
+            var mapOptions = {
+                zoom: 5,
+                disableDefaultUI: true,
+                center: latlng,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            }
+            map = new google.maps.Map(document.getElementById('map'), mapOptions);
+            google.maps.event.addListener(map, 'click', function () {
+                infowindow.close();
+            });
+        }
+
+        function geocodePosition(pos) {
+            geocoder.geocode({
+                latLng: pos
+            }, function (responses) {
+                if (responses && responses.length > 0) {
+                    marker.formatted_address = responses[0].formatted_address;
+                } else {
+                    marker.formatted_address = 'Cannot determine address at this location.';
+                }
+                infowindow.setContent(marker.formatted_address + "<br>coordinates: " + marker.getPosition().toUrlValue(6));
+                var lat = marker.getPosition().lat();
+                var lng = marker.getPosition().lng();
+                document.getElementById('lat').value = lat;
+                document.getElementById('lng').value = lng;
+                document.getElementById('runningadd').value = responses[0].formatted_address;
+
+                infowindow.open(map, marker);
+            });
+        }
+
+        function codeAddress() {
+            var address = document.getElementById('address').value;
+            geocoder.geocode({
+                'address': address
+            }, function (results, status) {
+                if (status == google.maps.GeocoderStatus.OK) {
+                    map.setCenter(results[0].geometry.location);
+                    if (marker) {
+                        marker.setMap(null);
+                        if (infowindow) infowindow.close();
+                    }
+                    marker = new google.maps.Marker({
+                        map: map,
+                        draggable: true,
+                        animation: google.maps.Animation.DROP,
+                        position: results[0].geometry.location
+                    });
+                    map.setZoom(14);
+                    google.maps.event.addListener(marker, 'dragend', function () {
+                        geocodePosition(marker.getPosition());
+                        map.setZoom(17)
+                    });
+                    google.maps.event.addListener(marker, 'click', function () {
+                        if (marker.formatted_address) {
+                            infowindow.setContent(marker.formatted_address + "<br>coordinates: " + marker.getPosition().toUrlValue(6));
+                            //map.setZoom(17)
+                        } else {
+                            infowindow.setContent(address + "<br>coordinates: " + marker.getPosition().toUrlValue(6));
+                        }
+                        infowindow.open(map, marker);
+                    });
+                    google.maps.event.trigger(marker, 'click');
+                } else {
+                    alert('Geocode was not successful for the following reason: ' + status);
+                }
+            });
+        }
+
+        google.maps.event.addDomListener(window, "load", initialize);
+    </script>
+    <!-- google customization JavaScript code ends from here -->
+    {% include 'includes/_footer.html' %}
+
+</body>
+
+</html>

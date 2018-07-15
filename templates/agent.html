@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <title>Agent|SecourHealth</title>
+    <link rel="icon" href="../../favicon.ico" type="image/x-icon">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
+
+    <!-- Bootstrap Core Css -->
+    <link href="../static/plugins/bootstrap/css/bootstrap.css" rel="stylesheet">
+
+    <!-- Waves Effect Css -->
+    <link href="../static/plugins/node-waves/waves.css" rel="stylesheet" />
+
+    <!-- Animation Css -->
+    <link href="../static/plugins/animate-css/animate.css" rel="stylesheet" />
+
+    <!-- JQuery DataTable Css -->
+    <link href="../static/plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css" rel="stylesheet">
+
+    <!-- Custom Css -->
+    <link href="../static/css/style.css" rel="stylesheet">
+
+    <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
+    <link href="../static/css/themes/all-themes.css" rel="stylesheet" />
+</head>
+
+<body class="theme-red">
+    {% include 'includes/_loader.html' %} 
+    {% include 'includes/_navbar.html' %} 
+    {% include 'includes/_menu.html' %}
+    <section class="content">
+        <div class="container-fluid">
+            <div class="block-header">
+                <h2>
+                    <strong>Agent Management</strong>
+                </h2>
+            </div>
+            <!-- Exportable Table -->
+            <div class="row clearfix">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="card">
+                        <div class="header">
+                            <a href="/add_agent" ><button type="button" class="btn bg-light-green waves-effect" data-toggle="modal" data-target="#largeModal">
+                                <i class="material-icons">person_add</i>
+                                <span>
+                                    <b>Add Agent</b>
+                                </span>
+                            </button></a>
+                        </div>
+                        <div class="body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-striped table-hover dataTable js-exportable">
+                                    <thead>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Email</th>
+                                            <th>Mobile</th>
+                                            <th>IMEI No</th>
+                                            <th>DOB</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% block body %}
+                                        {% for agent in agentdata %}
+                                        <tr>
+                                            <td>{{agent.fname}}  {{agent.lname}}</td>
+                                            <td>{{agent.email}}</td>
+                                            <td>{{agent.mobno}}</td>
+                                            <td>{{agent.imeino}}</td>
+                                            <td>{{agent.dob}}</td>
+                                            <td>
+                                                <a href="view_agent/{{agent.agent_id}}"><button type="button" class="btn btn-primary waves-effect">View</button></a>
+                                                <a href="edit_agent/{{agent.agent_id}}"><button type="button" class="btn btn-success waves-effect">Edit</button></a>
+                                                <a href="delete_agent/{{agent.agent_id}}"><button type="button" class="btn btn-danger waves-effect">Delete</button></a>
+                                            </td>
+                                        </tr>
+                                        {% endfor %}
+                                        {% endblock %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- #END# Exportable Table -->
+        </div>
+        <!-- container fluid ends here -->
+    </section>
+    <!-- section ends here -->
+
+
+    <!-- Jquery Core Js -->
+    <script src="../static/plugins/jquery/jquery.min.js"></script>
+
+    <!-- Bootstrap Core Js -->
+    <script src="../static/plugins/bootstrap/js/bootstrap.js"></script>
+
+    <!-- Select Plugin Js -->
+    <script src="../static/plugins/bootstrap-select/js/bootstrap-select.js"></script>
+
+    <!-- Slimscroll Plugin Js -->
+    <script src="../static/plugins/jquery-slimscroll/jquery.slimscroll.js"></script>
+
+    <!-- Waves Effect Plugin Js -->
+    <script src="../static/plugins/node-waves/waves.js"></script>
+
+    <!-- Jquery DataTable Plugin Js -->
+    <script src="../static/plugins/jquery-datatable/jquery.dataTables.js"></script>
+    <script src="../static/plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js"></script>
+    <script src="../static/plugins/jquery-datatable/extensions/export/dataTables.buttons.min.js"></script>
+    <script src="../static/plugins/jquery-datatable/extensions/export/buttons.flash.min.js"></script>
+    <script src="../static/plugins/jquery-datatable/extensions/export/jszip.min.js"></script>
+    <script src="../static/plugins/jquery-datatable/extensions/export/pdfmake.min.js"></script>
+    <script src="../static/plugins/jquery-datatable/extensions/export/vfs_fonts.js"></script>
+    <script src="../static/plugins/jquery-datatable/extensions/export/buttons.html5.min.js"></script>
+    <script src="../static/plugins/jquery-datatable/extensions/export/buttons.print.min.js"></script>
+
+    <!-- Custom Js -->
+    <script src="../static/js/admin.js"></script>
+    <script src="../static/js/pages/tables/jquery-datatable.js"></script>
+
+    <!-- Demo Js -->
+    <script src="../static/js/demo.js"></script>
+</body>
+
+</html>

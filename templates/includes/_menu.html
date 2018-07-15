@@ -1,0 +1,117 @@
+ {% block body %}
+<section>
+    <!-- Left Sidebar -->
+    <aside id="leftsidebar" class="sidebar">
+        <!-- User Info -->
+        <div class="user-info">
+            <div class="image">
+                <img width="48" height="48" alt="User" />
+            </div>
+            <div class="info-container">
+                <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Welcome</div>
+                <div class="email">
+                    <b>{{session.username}}</b>
+                </div>
+                <div class="btn-group user-helper-dropdown">
+                    <i class="material-icons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">keyboard_arrow_down</i>
+                    <ul class="dropdown-menu pull-right">
+                        <li>
+                            <a href="javascript:void(0);">
+                                <i class="material-icons">person</i>Profile</a>
+                        </li>
+                        <li role="seperator" class="divider"></li>
+                        <li>
+                            <a href="/logout">
+                                <i class="material-icons">input</i>Sign Out</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- #User Info -->
+        <!-- Menu -->
+        <div class="menu">
+            <ul class="list">
+                <li class="header">MAIN NAVIGATION</li>
+                <li class="active">
+                    <a href="/dashboard">
+                        <i class="material-icons">home</i>
+                        <span>Home</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:void(0);" class="menu-toggle">
+                        <i class="material-icons">person</i>
+                        <span>Agent</span>
+                    </a>
+                    <ul class="ml-menu">
+                        <li>
+                            <a href="/add_agent">Registration</a>
+                        </li>
+                        <li>
+                            <a href="/agent">Manage</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="javascript:void(0);" class="menu-toggle">
+                        <i class="material-icons">location_on</i>
+                        <span>Location</span>
+                    </a>
+                    <ul class="ml-menu">
+                        <li>
+                            <a href="/reg_location">Registration</a>
+                        </li>
+                        <li>
+                            <a href="/location">Manage</a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li>
+                    <a href="javascript:void(0);" class="menu-toggle">
+                        <i class="material-icons">assignment</i>
+                        <span>Survey</span>
+                    </a>
+                    <ul class="ml-menu">
+                        <li>
+                            <a href="/create_survey">Create</a>
+                        </li>
+                        <li>
+                            <a href="/location">Manage</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="javascript:void(0);" class="menu-toggle">
+                        <i class="material-icons">view_list</i>
+                        <span>Question</span>
+                    </a>
+                    <ul class="ml-menu">
+                        <li>
+                            <a href="/create_question">Create</a>
+                        </li>
+                        <li>
+                            <a href="/question">Manage</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="javascript:void(0);">
+                        <i class="material-icons">perm_media</i>
+                        <span>Response</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:void(0);">
+                        <i class="material-icons">pie_chart</i>
+                        <span>Result</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <!-- #Menu -->
+    </aside>
+    <!-- #END# Left Sidebar -->
+</section>
+{% endblock %}

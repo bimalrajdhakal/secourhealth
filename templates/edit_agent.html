@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <title>Agent|SecourHealth</title>
+    <link rel="icon" href="../../favicon.ico" type="image/x-icon">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
+
+    <!-- Bootstrap Core Css -->
+    <link href="../static/plugins/bootstrap/css/bootstrap.css" rel="stylesheet">
+
+    <!-- Waves Effect Css -->
+    <link href="../static/plugins/node-waves/waves.css" rel="stylesheet"/>
+
+    <!-- Animation Css -->
+    <link href="../static/plugins/animate-css/animate.css" rel="stylesheet"/>
+    <!-- Custom Css -->
+    <link href="../static/css/style.css" rel="stylesheet">
+
+    <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
+    <link href="../static/css/themes/all-themes.css" rel="stylesheet"/>
+</head>
+
+<body class="theme-red">
+    {% include 'includes/_loader.html' %} {% include 'includes/_navbar.html' %} {% include 'includes/_menu.html' %}
+    <section class="content">
+        <div class="container-fluid">
+            <div class="block-header">
+                <h2>
+                    <strong>Agent Edit/Update</strong>
+                </h2>
+            </div>
+            {% block body %}
+            <!-- Modal Dialogs ============== -->
+            <div class="body">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title align-center">Agent Details</h4>
+                        </div>
+                        {% macro render_field(field) %}
+                            {{ field(**kwargs)|safe }}
+                        {%endmacro%}
+                        <form id="agentregModalForm" name="agentregModalForm" method="POST">
+                            <div class="modal-body">
+                                <div class="row clearfix">
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                        <div>
+                                            <label>First Name</label>
+                                            {{render_field(form.fname, class_="form-control") }}
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-5 col-md-5 col-sm-5 col-xs-6">
+                                        <div>
+                                            <label>Last Name</label>
+                                            {{render_field(form.lname, class_="form-control") }}
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                        <div>
+                                            <label>Email</label>
+                                            {{render_field(form.email, class_="form-control") }}
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-5 col-md-5 col-sm-5 col-xs-6">
+                                        <div>
+                                            <label>Mobile No</label>
+                                            {{render_field(form.mobno, class_="form-control") }}
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                        <div>
+                                            <label>Address Line1</label>
+                                            {{render_field(form.addressline1, class_="form-control") }}
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-5 col-md-5 col-sm-5 col-xs-6">
+                                        <div>
+                                            <label>Address Line2</label>
+                                            {{render_field(form.addressline2, class_="form-control") }}
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                        <div>
+                                            <label>Address Line3</label>
+                                            {{render_field(form.addressline3, class_="form-control") }}
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-5 col-md-5 col-sm-5 col-xs-6">
+                                        <div>
+                                            <label>PIN Code</label>
+                                            {{render_field(form.pincode, class_="form-control") }}
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                        <div>
+                                            <label>IMEI No</label>
+                                            {{render_field(form.imeino, class_="form-control") }}
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-5 col-md-5 col-sm-5 col-xs-6">
+                                        <div>
+                                            <label>DOB</label>
+                                            {{render_field(form.dob, class_="form-control") }}
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- row clearfix end here -->
+                            </div>
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-link waves-effect">UPDATE</button>
+                                <a href="/agent" class="btn btn-link waves-effect">BACK</a>
+                            </div>
+                        </form>
+                    </div>
+                    <!-- modal content ends here -->
+                </div>
+                <!-- modal dialog ends here -->
+            </div>
+            <!-- modal end here -->
+            {% endblock %}
+        </div>
+        <!-- container fluid ends here -->
+    </section>
+    <!-- section ends here -->
+
+    <!-- Jquery Core Js -->
+    <script src="../static/plugins/jquery/jquery.min.js"></script>
+
+    <!-- Bootstrap Core Js -->
+    <script src="../static/plugins/bootstrap/js/bootstrap.js"></script>
+
+    <!-- Select Plugin Js -->
+    <script src="../static/plugins/bootstrap-select/js/bootstrap-select.js"></script>
+
+    <!-- Slimscroll Plugin Js -->
+    <script src="../static/plugins/jquery-slimscroll/jquery.slimscroll.js"></script>
+
+    <!-- Waves Effect Plugin Js -->
+    <script src="../static/plugins/node-waves/waves.js"></script>
+    <!-- Custom Js -->
+    <script src="../static/js/admin.js"></script>
+    <script src="../static/js/pages/ui/modals.js"></script>
+    <!-- Validation Plugin Js -->
+   <script src="../static/plugins/jquery-validation/jquery.validate.js"></script>
+
+    <!-- Demo Js -->
+    <script src="../static/js/demo.js"></script>
+    <script>
+            $(document).ready(function() {
+                $("#agentregModalForm").validate({
+                    rules: {
+                        fname: {
+                            required: true,
+                            minlength: 5
+                        },
+                        lname: {
+                            required: true,
+                            minlength: 5
+                        },
+                        email: {
+                            required: true
+                        },
+                        mobno: {
+                            required: true
+                        },
+                        addressline1: {
+                            required: true,
+                            minlength: 5
+                        },
+                        addressline2: {
+                            required: true,
+                            minlength: 5
+                        },
+                        pincode: {
+                            required: true
+                        },
+                        imeino: {
+                            required: true
+                        },
+                        dob: {
+                            required: true,
+                            date: true
+
+                        }
+                    },
+                    messages: {
+                        fname: {
+                            required: "You can't leave this empty.",
+                            minlength: "First Name must be at least 6 characters long"
+                        },
+                        lname: {
+                            required: "You can't leave this empty.",
+                            minlength: "Last Name must be at least 6 characters long"
+                        },
+                        email: {
+                            required: "You can't leave this empty.",
+                            minlength: "Your username must be at least 6 characters long"
+                        },
+                        mobno: {
+                            required: "You can't leave this empty.",
+                            maxlength: "Mobile no must be 10 digits"
+                        },
+                        addressline1: {
+                            required: "You can't leave this empty.",
+                            minlength: "Address Line 1 must be at least 6 characters long"
+                        },
+                        addressline2: {
+                            required: "You can't leave this empty.",
+                            minlength: "Address Line 2 must be at least 6 characters long"
+                        },
+                        addressline3: {
+                            required: "You can't leave this empty.",
+                            minlength: "Your username must be at least 6 characters long"
+                        },
+                        pincode: {
+                            required: "You can't leave this empty.",
+                            minlength: "PIN Code must be 6 digits"
+                        },
+                        imeino: {
+                            required: "You can't leave this empty.",
+                            minlength: "IMEI No must be 15 digits"
+                        },
+                        dob: {
+                            required: "You can't leave this empty.",
+                            minlength: "Your password must be at least 8 characters long"
+                        }
+                    },
+                    submitHandler: function (form) {
+                        form.submit();
+                    }
+                });
+            });
+        </script>
+</body>
+
+</html>
